@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Feeri Holding | المنصة الرسمية للتواصل</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --feeri-yellow: #F5B81B;
+            --feeri-purple: #6F4FBF;
+            --feeri-green: #2A9D8F;
+            --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(ellipse at 30% 20%, #3D2B5F, #1A1030, #0A0518);
+            font-family: var(--font-sans);
+            color: #F0EFF5;
+            line-height: 1.5;
+            min-height: 100vh;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 30%, rgba(111, 79, 191, 0.2), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* شاشة الترحيب */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 20%, #2a1a4a, #0a0518);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            backdrop-filter: blur(10px);
+        }
+        .splash-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .splash-content {
+            text-align: center;
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .splash-logo { margin-bottom: 2rem; }
+        .splash-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #F5E05C, #F5B81B, #C28AFF, #6FCFBF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .splash-message {
+            font-size: 1.2rem;
+            color: #d9cbff;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+        .splash-btn {
+            background: linear-gradient(95deg, #6F4FBF, #7C3AED);
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            box-shadow: 0 4px 15px rgba(111,79,191,0.4);
+        }
+        .splash-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(95deg, #7C3AED, #6F4FBF);
+            box-shadow: 0 6px 20px rgba(111,79,191,0.6);
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+        .main-content.visible { opacity: 1; }
+        .container { max-width: 700px; width: 100%; margin: 0 auto; }
+
+        /* بطاقة الروابط */
+        .links-card {
+            background: rgba(18, 12, 32, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(156, 110, 255, 0.4);
+            padding: 2rem;
+            box-shadow: 0 25px 45px -20px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .profile-area { margin-bottom: 2rem; }
+        .profile-logo {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1rem;
+            border-radius: 22px;
+            object-fit: cover;
+        }
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #F5E05C, #F5B81B, #C28AFF, #6FCFBF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .profile-title { color: #c8b5ff; font-size: 0.9rem; letter-spacing: 1px; margin-top: 0.3rem; }
+        .profile-bio { color: #b098e0; font-size: 0.85rem; margin-top: 1rem; padding: 0 1rem; line-height: 1.6; }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(156,110,255,0.5), transparent);
+            margin: 1.5rem 0;
+        }
+        .links-grid { display: flex; flex-direction: column; gap: 1rem; }
+        .social-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(30, 22, 60, 0.7);
+            border: 0.5px solid rgba(156, 110, 255, 0.3);
+            border-radius: 60px;
+            padding: 0.9rem 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            color: #f0eefc;
+        }
+        .social-link-btn:hover {
+            background: #6F4FBF;
+            transform: translateX(5px);
+            border-color: #F5B81B;
+        }
+        .link-left { display: flex; align-items: center; gap: 15px; }
+        .link-left i { font-size: 24px; }
+        .link-left span { font-weight: 500; font-size: 1rem; }
+        .link-right i { font-size: 18px; opacity: 0.7; }
+        .social-link-btn:hover .link-right i { opacity: 1; transform: translateX(3px); transition: 0.2s; }
+        .btn-youtube:hover { background: #FF0000; }
+        .btn-instagram:hover { background: #E4405F; }
+        .btn-x:hover { background: #000000; }
+        .btn-snapchat:hover { background: #FFFC00; color: #000; }
+        .btn-linkedin:hover { background: #0A66C2; }
+        .btn-facebook:hover { background: #1877F2; }
+        .footer-note { margin-top: 2rem; font-size: 0.7rem; color: #6a5a8e; text-align: center; }
+
+        /* ======= المربعات المتحركة المضيئة (بطيئة جدًا) ======= */
+        .moving-glow-box {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            color: #F5B81B;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid rgba(245, 184, 27, 0.8);
+            font-family: var(--font-sans);
+            white-space: nowrap;
+            z-index: 999;
+            pointer-events: none;
+            animation: glowPulse 1.5s ease-in-out infinite alternate;
+        }
+        /* المربع السفلي (من اليسار إلى اليمين) */
+        .moving-glow-box.bottom {
+            bottom: 30px;
+            left: 20px;
+            animation-name: moveHorizontalBottom, glowPulse;
+            animation-duration: 18s, 1.5s;   /* 18 ثانية ذهاباً وإياباً (بطيء جداً) */
+            animation-timing-function: ease-in-out, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-direction: alternate, alternate;
+        }
+        /* المربع العلوي (عكسي: من اليمين إلى اليسار) */
+        .moving-glow-box.top {
+            top: 30px;
+            right: 20px;
+            animation-name: moveHorizontalTop, glowPulse;
+            animation-duration: 18s, 1.5s;
+            animation-timing-function: ease-in-out, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-direction: alternate, alternate;
+        }
+
+        @keyframes moveHorizontalBottom {
+            0% { left: 20px; }
+            100% { left: calc(100% - 160px); }
+        }
+
+        @keyframes moveHorizontalTop {
+            0% { right: 20px; }
+            100% { right: calc(100% - 160px); }
+        }
+
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 0 5px #F5B81B, 0 0 5px #6F4FBF;
+                border-color: #F5B81B;
+                background: rgba(0, 0, 0, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 20px #F5B81B, 0 0 15px #6F4FBF, 0 0 5px #fff;
+                border-color: #FFF200;
+                background: rgba(111, 79, 191, 0.2);
+                color: #FFFFFF;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .moving-glow-box { font-size: 0.65rem; padding: 5px 12px; }
+            .moving-glow-box.bottom { bottom: 15px; animation-duration: 14s, 1.5s; }
+            .moving-glow-box.top { top: 15px; animation-duration: 14s, 1.5s; }
+            @keyframes moveHorizontalBottom {
+                0% { left: 10px; }
+                100% { left: calc(100% - 120px); }
+            }
+            @keyframes moveHorizontalTop {
+                0% { right: 10px; }
+                100% { right: calc(100% - 120px); }
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="moving-glow-box top">✨ feeri holding ✨</div>
+<div class="moving-glow-box bottom">✨ feeri holding ✨</div>
+
+<div class="splash-screen" id="splashScreen">
+    <div class="splash-content">
+        <div class="splash-logo">
+            <img src="Untitled.jpg" alt="Feeri Holding Logo" class="profile-logo">
+        </div>
+        <h1 class="splash-title">FEERI HOLDING</h1>
+        <p class="splash-message">
+            مرحباً بك في المنصة الرسمية لـ Feeri<br>
+            حلول لوجستية ذكية لتجارة إلكترونية أسرع<br>
+            نقدم لك أفضل خدمات التوصيل في المملكة
+        </p>
+        <button class="splash-btn" id="enterBtn">دخول إلى الروابط الرسمية ←</button>
+    </div>
+</div>
+
+<div class="main-content" id="mainContent">
+    <div class="container">
+        <div class="links-card">
+            <div class="profile-area">
+                <img src="Untitled.jpg" alt="Feeri Holding Logo" class="profile-logo">
+                <h2 class="profile-name">FEERI HOLDING</h2>
+                <div class="profile-title">لوجستيات الجيل القادم | رؤية 2030</div>
+                <p class="profile-bio">
+                    حلول توصيل ذكية وسريعة للتجار والعملاء في المملكة العربية السعودية<br>
+                    ثقة، سرعة، ودقة في كل طلب
+                </p>
+            </div>
+            <div class="divider"></div>
+            <div class="links-grid">
+                <a href="https://www.youtube.com/@feeriholding" target="_blank" class="social-link-btn btn-youtube">
+                    <div class="link-left"><i class="ti ti-brand-youtube" style="color:#FF3B3B"></i><span>قناة يوتيوب الرسمية</span></div>
+                    <div class="link-right"><i class="ti ti-arrow-left"></i></div>
+                </a>
+                <a href="https://www.instagram.com/feeriholding" target="_blank" class="social-link-btn btn-instagram">
+                    <div class="link-left"><i class="ti ti-brand-instagram" style="color:#E4405F"></i><span>انستقرام Feeri</span></div>
+                    <div class="link-right"><i class="ti ti-arrow-left"></i></div>
+                </a>
+                <a href="https://x.com/feerilogis" target="_blank" class="social-link-btn btn-x">
+                    <div class="link-left"><i class="ti ti-brand-x" style="color:#FFFFFF"></i><span>حساب X الرسمي</span></div>
+                    <div class="link-right"><i class="ti ti-arrow-left"></i></div>
+                </a>
+                <a href="https://snapchat.com/t/L2YH5Wyl" target="_blank" class="social-link-btn btn-snapchat">
+                    <div class="link-left"><i class="ti ti-brand-snapchat" style="color:#FFFC00"></i><span>سناب شات Feeri</span></div>
+                    <div class="link-right"><i class="ti ti-arrow-left"></i></div>
+                </a>
+                <a href="https://www.linkedin.com/in/feeri-holding-88b266342" target="_blank" class="social-link-btn btn-linkedin">
+                    <div class="link-left"><i class="ti ti-brand-linkedin" style="color:#0A66C2"></i><span>لينكدإن Feeri</span></div>
+                    <div class="link-right"><i class="ti ti-arrow-left"></i></div>
+                </a>
+                <a href="https://www.facebook.com/share/1QiNRZoc8W/" target="_blank" class="social-link-btn btn-facebook">
+                    <div class="link-left"><i class="ti ti-brand-facebook" style="color:#1877F2"></i><span>صفحة فيسبوك الرسمية</span></div>
+                    <div class="link-right"><i class="ti ti-arrow-left"></i></div>
+                </a>
+            </div>
+            <div class="footer-note">© 2026 Feeri Holding — جميع الحقوق محفوظة</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const splashScreen = document.getElementById('splashScreen');
+    const mainContent = document.getElementById('mainContent');
+    const enterBtn = document.getElementById('enterBtn');
+
+    enterBtn.addEventListener('click', () => {
+        splashScreen.classList.add('hide');
+        mainContent.classList.add('visible');
+        setTimeout(() => { splashScreen.style.display = 'none'; }, 800);
+    });
+
+    setTimeout(() => {
+        if (splashScreen.style.display !== 'none') {
+            splashScreen.classList.add('hide');
+            mainContent.classList.add('visible');
+            setTimeout(() => { splashScreen.style.display = 'none'; }, 800);
+        }
+    }, 3000);
+</script>
+</body>
+</html>
