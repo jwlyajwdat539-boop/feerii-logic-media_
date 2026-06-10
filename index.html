@@ -12,7 +12,6 @@
             box-sizing: border-box;
         }
 
-        /* ===== هوية Feeri الجديدة ===== */
         :root {
             --feeri-teal: #0DFFE8;
             --feeri-purple: #9B30FF;
@@ -20,20 +19,25 @@
             --feeri-dark: #0A0A0F;
             --feeri-navy: #1A1A2E;
             --feeri-slate: #2D2D4E;
-            --feeri-teal-dark: #00C9B8;
-            --feeri-purple-dark: #7B22CC;
             --feeri-white: #FFFFFF;
             --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
         }
 
         body {
-            background: radial-gradient(ellipse at 30% 20%, #3D2B5F, #1A1030, #0A0518);
+            /* خلفية دبي مع تراكب ألوان الهوية */
+            background: linear-gradient(135deg, rgba(26, 16, 48, 0.85), rgba(10, 5, 24, 0.92)), 
+                        url('https://images.pexels.com/photos/258117/pexels-photo-258117.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
             font-family: var(--font-sans);
             color: #F0EFF5;
             line-height: 1.5;
             min-height: 100vh;
             position: relative;
         }
+        
+        /* تأثير إضافي لإبراز هوية Feeri على الخلفية */
         body::before {
             content: "";
             position: fixed;
@@ -41,12 +45,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 80% 30%, rgba(155, 48, 255, 0.15), transparent 70%);
+            background: radial-gradient(circle at 80% 30%, rgba(155, 48, 255, 0.2), transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* شاشة الترحيب بألوان الهوية */
+        /* باقي الكود كما هو دون تغيير */
         .splash-screen {
             position: fixed;
             top: 0;
@@ -110,7 +114,6 @@
             box-shadow: 0 6px 20px rgba(155,48,255,0.6);
         }
 
-        /* المحتوى الرئيسي */
         .main-content {
             opacity: 0;
             transition: opacity 0.6s ease;
@@ -125,7 +128,6 @@
         .main-content.visible { opacity: 1; }
         .container { max-width: 700px; width: 100%; margin: 0 auto; }
 
-        /* بطاقة الروابط بألوان الهوية */
         .links-card {
             background: rgba(10, 10, 15, 0.85);
             backdrop-filter: blur(12px);
@@ -143,6 +145,8 @@
             margin: 0 auto 1rem;
             border-radius: 22px;
             object-fit: contain;
+            background: rgba(0,0,0,0.2);
+            display: block;
         }
         .profile-name {
             font-size: 1.8rem;
@@ -163,7 +167,6 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-        /* شعار رؤية 2030 - صورة من الرابط الجديد */
         .vision-logo {
             display: inline-flex;
             align-items: center;
@@ -214,7 +217,6 @@
         .link-right i { font-size: 18px; opacity: 0.7; }
         .social-link-btn:hover .link-right i { opacity: 1; transform: translateX(3px); transition: 0.2s; }
         
-        /* ألوان الهوية عند المرور */
         .btn-youtube:hover { background: #FF0000; }
         .btn-instagram:hover { background: #E4405F; }
         .btn-x:hover { background: #000000; }
@@ -225,7 +227,6 @@
         
         .footer-note { margin-top: 2rem; font-size: 0.7rem; color: #6a5a8e; text-align: center; }
 
-        /* المربعات المتحركة بألوان الهوية */
         .moving-glow-box {
             position: fixed;
             background: rgba(10, 10, 15, 0.7);
@@ -308,7 +309,10 @@
 <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
         <div class="splash-logo">
-            <img src="https://github.com/jwlyajwdat539-boop/feerii-logic-media_/blob/main/%D9%81%D9%8A%D8%B1%D9%8A1.png" alt="Feeri Holding Logo" class="profile-logo">
+            <img src="Untitled.jpg" 
+                 alt="Feeri Holding Logo" 
+                 class="profile-logo"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%231A1A2E\'/%3E%3Ctext x=\'100\' y=\'120\' font-size=\'28\' text-anchor=\'middle\' fill=\'%230DFFE8\' font-weight=\'bold\'%3EFEERI%3C/text%3E%3Ctext x=\'100\' y=\'155\' font-size=\'20\' text-anchor=\'middle\' fill=\'%239B30FF\'%3EHOLDING%3C/text%3E%3C/svg%3E';">
         </div>
         <h1 class="splash-title">FEERI HOLDING</h1>
         <p class="splash-message">
@@ -324,46 +328,51 @@
     <div class="container">
         <div class="links-card">
             <div class="profile-area">
-                <img src="https://github.com/jwlyajwdat539-boop/feerii-logic-media_/blob/main/%D9%81%D9%8A%D8%B1%D9%8A1.png" alt="Feeri Holding Logo" class="profile-logo">
+                <img src="Untitled.jpg" 
+                     alt="Feeri Holding Logo" 
+                     class="profile-logo"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%231A1A2E\'/%3E%3Ctext x=\'100\' y=\'120\' font-size=\'28\' text-anchor=\'middle\' fill=\'%230DFFE8\' font-weight=\'bold\'%3EFEERI%3C/text%3E%3Ctext x=\'100\' y=\'155\' font-size=\'20\' text-anchor=\'middle\' fill=\'%239B30FF\'%3EHOLDING%3C/text%3E%3C/svg%3E';">
                 <h2 class="profile-name">FEERI HOLDING</h2>
                 <div class="profile-title">
                     <span>شركة قابضة سعودية متعددة الأنشطة، تعمل وفق نموذج استثماري وتشغيلي يهدف إلى بناء وإدارة منظومة متكاملة من الشركات المتخصصة تحت علامة FEERI.</span>
                     <div class="vision-logo">
-                        <img src="https://github.com/jwlyajwdat539-boop/feerii-logic-media_/blob/main/%D9%81%D9%8A%D8%B1%D9%8A1.png" alt="رؤية السعودية 2030">
+                        <img src="https://raw.githubusercontent.com/jwlyajwdat539-boop/feerii-logic-media_/main/%D9%81%D9%8A%D8%B1%D9%8A1.png" 
+                             alt="رؤية السعودية 2030"
+                             onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%2300A86B\'/%3E%3Ctext x=\'50\' y=\'68\' font-size=\'20\' text-anchor=\'middle\' fill=\'%23FFFFFF\' font-weight=\'bold\'%3E2030%3C/text%3E%3C/svg%3E';">
                     </div>
                 </div>
                 <p class="profile-bio">
-                    حلول توصيل ذكية وسريعة للتجار والعملاء في المملكة العربية السعودية<br>
+                         وفر وقتك وجهدك — احصل على كل خدماتك التشغيلية من مصدر واحد موثوق في المملكة العربية السعودية<br>
                     ثقة، سرعة
                 </p>
             </div>
             <div class="divider"></div>
             <div class="links-grid">
-                <a href="https://www.youtube.com/@feeriholding" target="_blank" class="social-link-btn btn-youtube">
+                <a href="https://www.youtube.com/@feeriholding" target="_blank" rel="noopener noreferrer" class="social-link-btn btn-youtube">
                     <div class="link-left"><i class="ti ti-brand-youtube" style="color:#FF3B3B"></i><span>قناة يوتيوب الرسمية</span></div>
                     <div class="link-right"><i class="ti ti-arrow-left"></i></div>
                 </a>
-                <a href="https://www.instagram.com/feeriholding" target="_blank" class="social-link-btn btn-instagram">
+                <a href="https://www.instagram.com/feeriholding" target="_blank" rel="noopener noreferrer" class="social-link-btn btn-instagram">
                     <div class="link-left"><i class="ti ti-brand-instagram" style="color:#E4405F"></i><span>انستقرام Feeri</span></div>
                     <div class="link-right"><i class="ti ti-arrow-left"></i></div>
                 </a>
-                <a href="https://x.com/feerilogis" target="_blank" class="social-link-btn btn-x">
+                <a href="https://x.com/feerilogis" target="_blank" rel="noopener noreferrer" class="social-link-btn btn-x">
                     <div class="link-left"><i class="ti ti-brand-x" style="color:#FFFFFF"></i><span>حساب X الرسمي</span></div>
                     <div class="link-right"><i class="ti ti-arrow-left"></i></div>
                 </a>
-                <a href="https://snapchat.com/t/L2YH5Wyl" target="_blank" class="social-link-btn btn-snapchat">
+                <a href="https://snapchat.com/t/L2YH5Wyl" target="_blank" rel="noopener noreferrer" class="social-link-btn btn-snapchat">
                     <div class="link-left"><i class="ti ti-brand-snapchat" style="color:#FFFC00"></i><span>سناب شات Feeri</span></div>
                     <div class="link-right"><i class="ti ti-arrow-left"></i></div>
                 </a>
-                <a href="https://www.linkedin.com/in/feeri-holding-88b266342" target="_blank" class="social-link-btn btn-linkedin">
+                <a href="https://www.linkedin.com/in/feeri-holding-88b266342" target="_blank" rel="noopener noreferrer" class="social-link-btn btn-linkedin">
                     <div class="link-left"><i class="ti ti-brand-linkedin" style="color:#0A66C2"></i><span>لينكدإن Feeri</span></div>
                     <div class="link-right"><i class="ti ti-arrow-left"></i></div>
                 </a>
-                <a href="https://www.facebook.com/share/1QiNRZoc8W/" target="_blank" class="social-link-btn btn-facebook">
+                <a href="https://www.facebook.com/share/1QiNRZoc8W/" target="_blank" rel="noopener noreferrer" class="social-link-btn btn-facebook">
                     <div class="link-left"><i class="ti ti-brand-facebook" style="color:#1877F2"></i><span>صفحة فيسبوك الرسمية</span></div>
                     <div class="link-right"><i class="ti ti-arrow-left"></i></div>
                 </a>
-                <a href="https://www.tiktok.com/@feeriholding" target="_blank" class="social-link-btn btn-tiktok">
+                <a href="https://www.tiktok.com/@feeriholding" target="_blank" rel="noopener noreferrer" class="social-link-btn btn-tiktok">
                     <div class="link-left"><i class="ti ti-brand-tiktok" style="color:#ffffff"></i><span>تيك توك Feeri</span></div>
                     <div class="link-right"><i class="ti ti-arrow-left"></i></div>
                 </a>
@@ -374,23 +383,38 @@
 </div>
 
 <script>
-    const splashScreen = document.getElementById('splashScreen');
-    const mainContent = document.getElementById('mainContent');
-    const enterBtn = document.getElementById('enterBtn');
-
-    enterBtn.addEventListener('click', () => {
-        splashScreen.classList.add('hide');
-        mainContent.classList.add('visible');
-        setTimeout(() => { splashScreen.style.display = 'none'; }, 800);
-    });
-
-    setTimeout(() => {
-        if (splashScreen.style.display !== 'none') {
-            splashScreen.classList.add('hide');
-            mainContent.classList.add('visible');
-            setTimeout(() => { splashScreen.style.display = 'none'; }, 800);
+    (function() {
+        const splashScreen = document.getElementById('splashScreen');
+        const mainContent = document.getElementById('mainContent');
+        const enterBtn = document.getElementById('enterBtn');
+        
+        if (enterBtn) {
+            enterBtn.addEventListener('click', () => {
+                if (splashScreen && mainContent) {
+                    splashScreen.classList.add('hide');
+                    mainContent.classList.add('visible');
+                    setTimeout(() => { if(splashScreen) splashScreen.style.display = 'none'; }, 800);
+                }
+            });
         }
-    }, 3000);
+        
+        setTimeout(() => {
+            if (splashScreen && splashScreen.style.display !== 'none' && !splashScreen.classList.contains('hide')) {
+                if (splashScreen && mainContent) {
+                    splashScreen.classList.add('hide');
+                    mainContent.classList.add('visible');
+                    setTimeout(() => { if(splashScreen) splashScreen.style.display = 'none'; }, 800);
+                }
+            }
+        }, 3000);
+        
+        const allLinks = document.querySelectorAll('.social-link-btn');
+        allLinks.forEach(link => {
+            if (link.getAttribute('href') && !link.hasAttribute('rel')) {
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+    })();
 </script>
 </body>
 </html>
